@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+# Model registry / tracking DB (regenerable via scripts/run_analysis.py)
+mlruns.db
+mlruns/
+# Model dir: only the champion bundle is committed so the API/Docker work out of the box
+models/*
+!models/champion.pkl
+# OS / editors
+.DS_Store

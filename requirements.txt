@@ -1,0 +1,17 @@
+fastapi==0.142.2
+httpx==0.28.1
+lightgbm==4.7.0
+matplotlib==3.11.2
+mlflow==3.16.1
+numpy==2.5.3
+optuna==5.0.0
+pandas==3.0.6
+pydantic==2.13.5
+pytest==9.1.1
+scikit-learn==1.9.1
+scipy==1.18.1
+seaborn==0.13.2
+shap==0.52.0
+starlette==1.7.0
+uvicorn==0.54.0
+xgboost==3.4.1

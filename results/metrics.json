@@ -1,0 +1,221 @@
+{
+  "seed": 42,
+  "generated_at": "2026-10-06T05:38:52.470164+00:00",
+  "data": {
+    "source": "https://raw.githubusercontent.com/IBM/telco-customer-churn-on-icp4d/master/data/Telco-Customer-Churn.csv",
+    "n_rows": 7043,
+    "churn_rate": 0.2654
+  },
+  "eda": {
+    "n_rows": 7043,
+    "churn_rate": 0.2653698707936959,
+    "totalcharges_blanks": 11,
+    "top_corr": {
+      "is_monthly_contract": 0.405,
+      "tenure": 0.352,
+      "is_new": 0.318,
+      "is_electronic_check": 0.302,
+      "TotalCharges": 0.199
+    }
+  },
+  "cv_comparison": [
+    {
+      "model": "logistic_regression",
+      "roc_auc_mean": 0.8444,
+      "roc_auc_std": 0.019,
+      "pr_auc_mean": 0.6622,
+      "pr_auc_std": 0.044,
+      "f1_mean": 0.6183,
+      "f1_std": 0.0194,
+      "log_loss_mean": 0.4922,
+      "log_loss_std": 0.023
+    },
+    {
+      "model": "xgboost",
+      "roc_auc_mean": 0.8373,
+      "roc_auc_std": 0.0114,
+      "pr_auc_mean": 0.6493,
+      "pr_auc_std": 0.0167,
+      "f1_mean": 0.6242,
+      "f1_std": 0.0142,
+      "log_loss_mean": 0.4689,
+      "log_loss_std": 0.0148
+    },
+    {
+      "model": "lightgbm",
+      "roc_auc_mean": 0.8309,
+      "roc_auc_std": 0.0126,
+      "pr_auc_mean": 0.6401,
+      "pr_auc_std": 0.0142,
+      "f1_mean": 0.6007,
+      "f1_std": 0.0304,
+      "log_loss_mean": 0.4808,
+      "log_loss_std": 0.0183
+    },
+    {
+      "model": "random_forest",
+      "roc_auc_mean": 0.8299,
+      "roc_auc_std": 0.0104,
+      "pr_auc_mean": 0.6314,
+      "pr_auc_std": 0.0136,
+      "f1_mean": 0.5543,
+      "f1_std": 0.0196,
+      "log_loss_mean": 0.4451,
+      "log_loss_std": 0.0176
+    }
+  ],
+  "tuned": {
+    "xgboost": {
+      "params": {
+        "n_estimators": 423,
+        "max_depth": 3,
+        "learning_rate": 0.01243352328259873,
+        "subsample": 0.6578669994525523,
+        "colsample_bytree": 0.7336597849167,
+        "reg_lambda": 0.7354773132247561,
+        "min_child_weight": 7
+      },
+      "cv_auc": 0.8458
+    },
+    "lightgbm": {
+      "params": {
+        "n_estimators": 370,
+        "num_leaves": 16,
+        "learning_rate": 0.010726734614379868,
+        "subsample": 0.7176096385230569,
+        "colsample_bytree": 0.754829789269414,
+        "reg_lambda": 0.1159774273446728,
+        "min_child_samples": 41
+      },
+      "cv_auc": 0.8412
+    }
+  },
+  "validation": {
+    "logistic_regression": {
+      "threshold": 0.5,
+      "accuracy": 0.7459,
+      "precision": 0.5132,
+      "recall": 0.8342,
+      "f1": 0.6354,
+      "roc_auc": 0.859,
+      "pr_auc": 0.6736,
+      "brier": 0.1622,
+      "tn": 739,
+      "fp": 296,
+      "fn": 62,
+      "tp": 312
+    },
+    "random_forest": {
+      "threshold": 0.5,
+      "accuracy": 0.8027,
+      "precision": 0.6765,
+      "recall": 0.492,
+      "f1": 0.5697,
+      "roc_auc": 0.8378,
+      "pr_auc": 0.6335,
+      "brier": 0.1394,
+      "tn": 947,
+      "fp": 88,
+      "fn": 190,
+      "tp": 184
+    },
+    "xgboost_tuned": {
+      "threshold": 0.5,
+      "accuracy": 0.7573,
+      "precision": 0.5271,
+      "recall": 0.8316,
+      "f1": 0.6452,
+      "roc_auc": 0.8613,
+      "pr_auc": 0.6847,
+      "brier": 0.1585,
+      "tn": 756,
+      "fp": 279,
+      "fn": 63,
+      "tp": 311
+    },
+    "lightgbm_tuned": {
+      "threshold": 0.5,
+      "accuracy": 0.7651,
+      "precision": 0.5379,
+      "recall": 0.8155,
+      "f1": 0.6482,
+      "roc_auc": 0.8588,
+      "pr_auc": 0.6796,
+      "brier": 0.156,
+      "tn": 773,
+      "fp": 262,
+      "fn": 69,
+      "tp": 305
+    }
+  },
+  "champion": "xgboost_tuned",
+  "calibration": {
+    "brier_before": 0.1585,
+    "brier_after": 0.1299
+  },
+  "threshold_selection": {
+    "threshold": 0.2,
+    "offer_cost_usd": 20.0,
+    "save_rate": 0.3,
+    "ltv_months": 6,
+    "validation_expected_value_usd": 29854.5,
+    "validation_n_contacted": 699
+  },
+  "test": {
+    "threshold": 0.2,
+    "accuracy": 0.709,
+    "precision": 0.4736,
+    "recall": 0.8636,
+    "f1": 0.6117,
+    "roc_auc": 0.8365,
+    "pr_auc": 0.6408,
+    "brier": 0.1393,
+    "tn": 676,
+    "fp": 359,
+    "fn": 51,
+    "tp": 323
+  },
+  "test_expected_value_usd": 30413.92,
+  "shap_top_features": [
+    [
+      "is_monthly_contract",
+      0.5798399448394775
+    ],
+    [
+      "tenure",
+      0.3186732828617096
+    ],
+    [
+      "InternetService_Fiber optic",
+      0.2045915424823761
+    ],
+    [
+      "MonthlyCharges",
+      0.1630600243806839
+    ],
+    [
+      "Contract_Month-to-month",
+      0.1503375917673111
+    ],
+    [
+      "is_electronic_check",
+      0.1413169652223587
+    ],
+    [
+      "avg_monthly",
+      0.13844914734363556
+    ],
+    [
+      "InternetService_No",
+      0.13259096443653107
+    ],
+    [
+      "Contract_Two year",
+      0.1252555102109909
+    ],
+    [
+      "TotalCharges",
+      0.10956191271543503
+    ]
+  ]
+}
